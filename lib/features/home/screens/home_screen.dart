@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/routes/app_router.dart';
 import '../../onboarding/providers/onboarding_provider.dart';
+import '../../tracker/providers/tracker_provider.dart';
+import '../widgets/sos_button.dart';
+import '../widgets/streak_card.dart';
+import '../widgets/action_card.dart';
+import '../widgets/habit_tile.dart';
+import '../widgets/bottom_nav.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  int _navIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final tracker = ref.watch(trackerProvider);
+    final notifier = ref.read(trackerProvider.notifier);
+
     return Scaffold(
+      backgroundColor: AppColors.cream,
       appBar: AppBar(
         title: const Text('Nour al-Islam'),
         actions: [
@@ -17,36 +36,113 @@ class HomeScreen extends ConsumerWidget {
             icon: const Icon(Icons.settings),
             onPressed: () async {
               await ref.read(onboardingProvider.notifier).reset();
+              if (context.mounted) {
+                context.go(AppRoutes.welcome);
+              }
             },
           ),
         ],
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              const SizedBox(height: 24),
-              const Icon(
-                Icons.check_circle_outline,
-                size: 80,
-                color: AppColors.success,
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'Bienvenue sur Nour al-Islam !',
-                style: Theme.of(context).textTheme.headlineSmall,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'L\'onboarding est terminé. La suite arrive bientôt إن شاء الله.',
-                style: Theme.of(context).textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
-            ],
+        child: RefreshIndicator(
+          color: AppColors.gold,
+          onRefresh: () async {
+            notifier.resetForNewDay();
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // ===== Carte de série =====
+                StreakCard(
+                  streakDays: tracker.streakDays,
+                  completedToday: tracker.completedToday,
+                  totalHabits: tracker.habits.length,
+                ),
+                const SizedBox(height: 32),
+
+                // ===== Bouton SOS =====
+                Center(
+                  child: SosButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'Module SOS – Bientôt disponible إن شاء الله'),
+                          backgroundColor: AppColors.gold,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 40),
+
+                // ===== Actions rapides =====
+                Text(
+                  'Actions rapides',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ActionCard(
+                        icon: Icons.menu_book,
+                        label: 'Quran',
+                        subtitle: 'Lire un verset',
+                        onTap: () {},
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ActionCard(
+                        icon: Icons.auto_awesome,
+                        label: 'Dhikr',
+                        subtitle: 'Se souvenir d\'Allah',
+                        onTap: () {},
+                        color: AppColors.green,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ActionCard(
+                        icon: Icons.favorite,
+                        label: 'Dua',
+                        subtitle: 'Invocations',
+                        onTap: () {},
+                        color: AppColors.info,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 40),
+
+                // ===== Habitudes du jour =====
+                Text(
+                  'Habitudes du jour',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 16),
+                ...tracker.habits.map(
+                  (habit) => HabitTile(
+                    habit: habit,
+                    onIncrement: () => notifier.incrementHabit(habit.id),
+                    onDecrement: () => notifier.decrementHabit(habit.id),
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNav(
+        currentIndex: _navIndex,
+        onTap: (index) {
+          setState(() => _navIndex = index);
+        },
       ),
     );
   }
