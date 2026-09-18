@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/routes/app_router.dart';
 import '../providers/library_provider.dart';
+import '../providers/favorites_provider.dart';
 import '../models/dua.dart';
 
 class LibraryScreen extends ConsumerStatefulWidget {
@@ -34,7 +37,6 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // ===== Barre de recherche =====
             Padding(
               padding: const EdgeInsets.all(16),
               child: TextField(
@@ -61,8 +63,6 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                 ),
               ),
             ),
-
-            // ===== Filtres catégories =====
             SizedBox(
               height: 40,
               child: ListView(
@@ -102,8 +102,6 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // ===== Liste des douas =====
             Expanded(
               child: state.filteredDuas.isEmpty
                   ? Center(
@@ -179,93 +177,87 @@ class _CategoryChip extends StatelessWidget {
   }
 }
 
-class _DuaCard extends StatelessWidget {
+class _DuaCard extends ConsumerWidget {
   final Dua dua;
 
   const _DuaCard({required this.dua});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.greyLight),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Titre
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  dua.title,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.gold,
-                      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFav = ref.watch(favoritesProvider).contains(dua.id);
+
+    return InkWell(
+      onTap: () {
+        context.push(AppRoutes.duaDetailPath(dua.id));
+      },
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.greyLight),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    dua.title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.gold,
+                        ),
+                  ),
                 ),
-              ),
-              Text(
-                dua.category,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-
-          // Arabe
-          Text(
-            dua.textAr,
-            style: const TextStyle(
-              fontSize: 20,
-              fontFamily: 'Amiri',
-              height: 1.8,
-              color: AppColors.gold,
-            ),
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.rtl,
-          ),
-          const SizedBox(height: 16),
-
-          // Traduction
-          Text(
-            dua.textFr,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.6,
-                ),
-          ),
-          const SizedBox(height: 12),
-
-          // Translittération
-          Text(
-            dua.transliteration,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: AppColors.grey,
-                ),
-          ),
-          const SizedBox(height: 12),
-
-          // Référence
-          const Divider(color: AppColors.greyLight),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              const Icon(Icons.menu_book, size: 14, color: AppColors.grey),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  dua.reference,
+                if (isFav)
+                  const Icon(Icons.favorite, color: AppColors.gold, size: 18),
+                const SizedBox(width: 6),
+                Text(
+                  dua.category,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              dua.textAr,
+              style: const TextStyle(
+                fontSize: 20,
+                fontFamily: 'Amiri',
+                height: 1.8,
+                color: AppColors.gold,
               ),
-            ],
-          ),
-        ],
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              dua.textFr,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    height: 1.6,
+                  ),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                const Icon(Icons.menu_book, size: 14, color: AppColors.grey),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    dua.reference,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                const Icon(Icons.arrow_forward_ios,
+                    size: 12, color: AppColors.grey),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
