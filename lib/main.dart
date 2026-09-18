@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'config/theme/app_theme.dart';
+import 'config/theme/app_colors.dart';
 
 void main() {
   runApp(
@@ -17,20 +19,8 @@ class NourAlIslamApp extends StatelessWidget {
     return MaterialApp(
       title: 'Nour al-Islam',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFC9A84C),
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFC9A84C),
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       home: const WelcomeScreen(),
     );
@@ -49,26 +39,34 @@ class WelcomeScreen extends StatelessWidget {
           children: [
             const Icon(
               Icons.nightlight_round,
-              size: 80,
-              color: Color(0xFFC9A84C),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Nour al-Islam',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFFC9A84C),
-                  ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'نور الإسلام',
-              style: TextStyle(fontSize: 24),
+              size: 100,
+              color: AppColors.gold,
             ),
             const SizedBox(height: 32),
             Text(
-              'Bismillah – On construit ensemble 🌙',
-              style: Theme.of(context).textTheme.bodyMedium,
+              'Nour al-Islam',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    color: AppColors.gold,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'نور الإسلام',
+              style: TextStyle(
+                fontSize: 32,
+                fontFamily: 'Amiri',
+                color: AppColors.gold,
+              ),
+            ),
+            const SizedBox(height: 48),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Text(
+                'Bismillah – On construit ensemble 🌙',
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),
