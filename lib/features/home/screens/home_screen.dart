@@ -22,6 +22,15 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int _navIndex = 0;
 
+  void _onNavTap(int index) {
+    setState(() => _navIndex = index);
+    if (index == 2) {
+      // Bibliothèque
+      context.go(AppRoutes.library);
+    }
+    // Les autres onglets restent sur l'accueil pour l'instant
+  }
+
   @override
   Widget build(BuildContext context) {
     final tracker = ref.watch(trackerProvider);
@@ -81,7 +90,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: Icons.menu_book,
                         label: 'Quran',
                         subtitle: 'Lire un verset',
-                        onTap: () {},
+                        onTap: () => context.go(AppRoutes.library),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -90,7 +99,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: Icons.auto_awesome,
                         label: 'Dhikr',
                         subtitle: 'Se souvenir d\'Allah',
-                        onTap: () {},
+                        onTap: () => context.go(AppRoutes.library),
                         color: AppColors.green,
                       ),
                     ),
@@ -100,7 +109,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: Icons.favorite,
                         label: 'Dua',
                         subtitle: 'Invocations',
-                        onTap: () {},
+                        onTap: () => context.go(AppRoutes.library),
                         color: AppColors.info,
                       ),
                     ),
@@ -127,9 +136,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       bottomNavigationBar: BottomNav(
         currentIndex: _navIndex,
-        onTap: (index) {
-          setState(() => _navIndex = index);
-        },
+        onTap: _onNavTap,
       ),
     );
   }

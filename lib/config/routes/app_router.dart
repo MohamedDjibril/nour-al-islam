@@ -7,6 +7,7 @@ import '../../features/onboarding/screens/welcome_screen.dart';
 import '../../features/onboarding/screens/language_screen.dart';
 import '../../features/onboarding/screens/notifications_screen.dart';
 import '../../features/home/screens/home_screen.dart';
+import '../../features/library/screens/library_screen.dart';
 import '../../features/sos/screens/sos_start_screen.dart';
 import '../../features/sos/screens/sos_session_screen.dart';
 import '../../features/sos/screens/sos_complete_screen.dart';
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String language = '/onboarding/language';
   static const String notifications = '/onboarding/notifications';
   static const String home = '/home';
+  static const String library = '/library';
 
   // SOS
   static const String sosStart = '/sos/start';
@@ -48,6 +50,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.home,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.library,
+        builder: (context, state) => const LibraryScreen(),
       ),
       GoRoute(
         path: AppRoutes.sosStart,
