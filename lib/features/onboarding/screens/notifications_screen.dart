@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../config/theme/app_colors.dart';
+import '../../../config/routes/app_router.dart';
+import '../providers/onboarding_provider.dart';
+
+class NotificationsScreen extends ConsumerWidget {
+  const NotificationsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(onboardingProvider);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Notifications'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go(AppRoutes.language),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              const SizedBox(height: 24),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.goldLight,
+                ),
+                child: const Icon(
+                  Icons.notifications_active,
+                  size: 50,
+                  color: AppColors.gold,
+                ),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Restez connecté à votre foi',
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Recevez des rappels doux pour vos prières, dhikr et moments de réflexion.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.grey,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 48),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.greyLight),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.notifications, color: AppColors.gold),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        'Activer les rappels',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    Switch(
+                      value: state.notificationsEnabled,
+                      activeThumbColor: AppColors.gold,
+                      onChanged: (value) => ref
+                          .read(onboardingProvider.notifier)
+                          .setNotifications(value),
+                    ),
+                  ],
+                ),
+              ),
+              const Spacer(),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await ref
+                        .read(onboardingProvider.notifier)
+                        .completeOnboarding();
+                    if (context.mounted) {
+                      context.go(AppRoutes.home);
+                    }
+                  },
+                  child: const Text('Terminer'),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextButton(
+                onPressed: () async {
+                  await ref
+                      .read(onboardingProvider.notifier)
+                      .completeOnboarding();
+                  if (context.mounted) {
+                    context.go(AppRoutes.home);
+                  }
+                },
+                child: const Text('Plus tard'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
