@@ -55,31 +55,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // ===== Carte de série =====
                 StreakCard(
                   streakDays: tracker.streakDays,
                   completedToday: tracker.completedToday,
                   totalHabits: tracker.habits.length,
                 ),
                 const SizedBox(height: 32),
-
-                // ===== Bouton SOS =====
                 Center(
                   child: SosButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                              'Module SOS – Bientôt disponible إن شاء الله'),
-                          backgroundColor: AppColors.gold,
-                        ),
-                      );
+                      context.go(AppRoutes.sosStart);
                     },
                   ),
                 ),
                 const SizedBox(height: 40),
-
-                // ===== Actions rapides =====
                 Text(
                   'Actions rapides',
                   style: Theme.of(context).textTheme.titleLarge,
@@ -118,8 +107,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 40),
-
-                // ===== Habitudes du jour =====
                 Text(
                   'Habitudes du jour',
                   style: Theme.of(context).textTheme.titleLarge,
