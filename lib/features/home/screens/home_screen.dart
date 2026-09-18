@@ -24,11 +24,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _onNavTap(int index) {
     setState(() => _navIndex = index);
-    if (index == 2) {
-      // Bibliothèque
-      context.go(AppRoutes.library);
+    switch (index) {
+      case 2:
+        context.go(AppRoutes.library);
+        break;
+      case 3:
+        context.go(AppRoutes.favorites);
+        break;
+      case 4:
+        // Profil - à venir
+        break;
+      default:
+        break;
     }
-    // Les autres onglets restent sur l'accueil pour l'instant
   }
 
   @override

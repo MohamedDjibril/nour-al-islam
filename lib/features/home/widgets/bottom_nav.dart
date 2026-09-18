@@ -30,6 +30,7 @@ class BottomNav extends StatelessWidget {
         onDestinationSelected: onTap,
         backgroundColor: AppColors.white,
         indicatorColor: AppColors.goldLight,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
@@ -44,7 +45,12 @@ class BottomNav extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.menu_book_outlined),
             selectedIcon: Icon(Icons.menu_book, color: AppColors.gold),
-            label: 'Bibliothèque',
+            label: 'Biblio',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_border),
+            selectedIcon: Icon(Icons.favorite, color: AppColors.gold),
+            label: 'Favoris',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),

@@ -9,6 +9,7 @@ import '../../features/onboarding/screens/notifications_screen.dart';
 import '../../features/home/screens/home_screen.dart';
 import '../../features/library/screens/library_screen.dart';
 import '../../features/library/screens/dua_detail_screen.dart';
+import '../../features/library/screens/favorites_screen.dart';
 import '../../features/sos/screens/sos_start_screen.dart';
 import '../../features/sos/screens/sos_session_screen.dart';
 import '../../features/sos/screens/sos_complete_screen.dart';
@@ -20,6 +21,7 @@ class AppRoutes {
   static const String notifications = '/onboarding/notifications';
   static const String home = '/home';
   static const String library = '/library';
+  static const String favorites = '/favorites';
   static const String duaDetail = '/dua/:id';
 
   // SOS
@@ -27,7 +29,6 @@ class AppRoutes {
   static const String sosSession = '/sos/session';
   static const String sosComplete = '/sos/complete';
 
-  /// Helper pour ouvrir une dua par ID
   static String duaDetailPath(String id) => '/dua/$id';
 }
 
@@ -59,6 +60,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.library,
         builder: (context, state) => const LibraryScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.favorites,
+        builder: (context, state) => const FavoritesScreen(),
       ),
       GoRoute(
         path: AppRoutes.duaDetail,
