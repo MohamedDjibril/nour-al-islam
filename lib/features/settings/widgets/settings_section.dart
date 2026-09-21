@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 
 class SettingsSection extends StatelessWidget {
   final String title;
@@ -32,19 +33,19 @@ class SettingsSection extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: context.appSurface,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.greyLight),
+            border: Border.all(color: context.appBorder),
           ),
           child: Column(
             children: [
               for (int i = 0; i < children.length; i++) ...[
                 children[i],
                 if (i < children.length - 1)
-                  const Divider(
+                  Divider(
                     height: 1,
                     indent: 60,
-                    color: AppColors.greyLight,
+                    color: context.appBorder,
                   ),
               ],
             ],

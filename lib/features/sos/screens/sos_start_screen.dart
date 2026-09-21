@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 import '../../../config/routes/app_router.dart';
 import '../providers/sos_provider.dart';
 
@@ -12,7 +13,7 @@ class SosStartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: AppColors.cream,
+      backgroundColor: context.appBackground,
       appBar: AppBar(
         title: const Text('SOS – Besoin d\'aide'),
         leading: IconButton(

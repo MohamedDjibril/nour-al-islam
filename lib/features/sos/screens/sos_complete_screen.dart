@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 import '../../../config/routes/app_router.dart';
 import '../providers/sos_provider.dart';
 
@@ -14,7 +15,7 @@ class SosCompleteScreen extends ConsumerWidget {
     final verse = ref.watch(sosProvider).verse;
 
     return Scaffold(
-      backgroundColor: AppColors.cream,
+      backgroundColor: context.appBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),

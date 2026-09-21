@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 
 class SettingsTile extends StatelessWidget {
   final IconData icon;
@@ -63,10 +64,10 @@ class SettingsTile extends StatelessWidget {
             if (trailing != null)
               trailing!
             else if (onTap != null)
-              const Icon(
+              Icon(
                 Icons.arrow_forward_ios,
                 size: 14,
-                color: AppColors.grey,
+                color: context.appTextSecondary,
               ),
           ],
         ),

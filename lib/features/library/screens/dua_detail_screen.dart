@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 import '../data/duas_data.dart';
 import '../models/dua.dart';
 import '../providers/favorites_provider.dart';
@@ -24,7 +25,7 @@ class DuaDetailScreen extends ConsumerWidget {
     final isFav = ref.watch(favoritesProvider).contains(dua.id);
 
     return Scaffold(
-      backgroundColor: AppColors.cream,
+      backgroundColor: context.appBackground,
       appBar: AppBar(
         title: const Text('Dua'),
         leading: IconButton(
