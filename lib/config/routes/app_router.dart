@@ -9,6 +9,8 @@ import '../../features/onboarding/screens/notifications_screen.dart';
 import '../../features/home/screens/home_screen.dart';
 import '../../features/library/screens/library_screen.dart';
 import '../../features/library/screens/dua_detail_screen.dart';
+import '../../features/library/screens/adhkar_detail_screen.dart';
+import '../../features/library/screens/hadith_detail_screen.dart';
 import '../../features/library/screens/favorites_screen.dart';
 import '../../features/settings/screens/settings_screen.dart';
 import '../../features/sos/screens/sos_start_screen.dart';
@@ -24,7 +26,11 @@ class AppRoutes {
   static const String library = '/library';
   static const String favorites = '/favorites';
   static const String settings = '/settings';
+
+  // Détails
   static const String duaDetail = '/dua/:id';
+  static const String adhkarDetail = '/adhkar/:id';
+  static const String hadithDetail = '/hadith/:id';
 
   // SOS
   static const String sosStart = '/sos/start';
@@ -32,6 +38,8 @@ class AppRoutes {
   static const String sosComplete = '/sos/complete';
 
   static String duaDetailPath(String id) => '/dua/$id';
+  static String adhkarDetailPath(String id) => '/adhkar/$id';
+  static String hadithDetailPath(String id) => '/hadith/$id';
 }
 
 /// Provider du routeur (stable, ne dépend pas de l'état onboarding)
@@ -76,6 +84,20 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return DuaDetailScreen(duaId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.adhkarDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return AdhkarDetailScreen(adhkarId: id);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.hadithDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return HadithDetailScreen(hadithId: id);
         },
       ),
       GoRoute(

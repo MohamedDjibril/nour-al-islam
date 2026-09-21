@@ -387,7 +387,10 @@ class _AdhkarCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () => context.push(AppRoutes.adhkarDetailPath(adhkar.id)),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -470,6 +473,7 @@ class _AdhkarCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
@@ -481,7 +485,10 @@ class _HadithCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () => context.push(AppRoutes.hadithDetailPath(hadith.id)),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -551,6 +558,7 @@ class _HadithCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
