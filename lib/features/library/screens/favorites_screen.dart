@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 import '../../../config/routes/app_router.dart';
 import '../data/duas_data.dart';
 import '../models/dua.dart';
@@ -14,24 +15,22 @@ class FavoritesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favorites = ref.watch(favoritesProvider);
-    final favoriteDuas = DuasData.all
-        .where((dua) => favorites.contains(dua.id))
-        .toList();
+    final favoriteDuas =
+        DuasData.all.where((dua) => favorites.contains(dua.id)).toList();
 
     return Scaffold(
-      backgroundColor: AppColors.cream,
+      backgroundColor: context.appBackground,
       appBar: AppBar(
         title: const Text('Mes Favoris'),
       ),
       body: SafeArea(
         child: favoriteDuas.isEmpty
-            ? _EmptyState()
+            ? const _EmptyState()
             : ListView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: favoriteDuas.length,
                 itemBuilder: (context, index) {
-                  final dua = favoriteDuas[index];
-                  return _FavoriteDuaCard(dua: dua);
+                  return _FavoriteDuaCard(dua: favoriteDuas[index]);
                 },
               ),
       ),
@@ -40,6 +39,8 @@ class FavoritesScreen extends ConsumerWidget {
 }
 
 class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -53,7 +54,7 @@ class _EmptyState extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColors.goldLight.withValues(alpha: 0.3),
+                color: AppColors.gold.withValues(alpha: 0.15),
               ),
               child: const Icon(
                 Icons.favorite_border,
@@ -71,7 +72,6 @@ class _EmptyState extends StatelessWidget {
             Text(
               'Explorez la bibliothèque et appuyez sur le cœur ❤️ pour ajouter vos duas préférées ici.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.grey,
                     height: 1.6,
                   ),
               textAlign: TextAlign.center,
@@ -105,7 +105,7 @@ class _FavoriteDuaCard extends ConsumerWidget {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: context.appSurface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.goldLight, width: 2),
         ),
@@ -155,7 +155,8 @@ class _FavoriteDuaCard extends ConsumerWidget {
             const SizedBox(height: 12),
             Row(
               children: [
-                const Icon(Icons.menu_book, size: 14, color: AppColors.grey),
+                Icon(Icons.menu_book,
+                    size: 14, color: context.appTextSecondary),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
@@ -163,8 +164,8 @@ class _FavoriteDuaCard extends ConsumerWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios,
-                    size: 12, color: AppColors.grey),
+                Icon(Icons.arrow_forward_ios,
+                    size: 12, color: context.appTextSecondary),
               ],
             ),
           ],

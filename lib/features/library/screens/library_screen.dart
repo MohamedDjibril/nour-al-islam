@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 import '../../../config/routes/app_router.dart';
 import '../providers/library_provider.dart';
 import '../providers/favorites_provider.dart';
@@ -32,7 +33,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
     final notifier = ref.read(libraryProvider.notifier);
 
     return Scaffold(
-      backgroundColor: AppColors.cream,
+      backgroundColor: context.appBackground,
       appBar: AppBar(
         title: const Text('Bibliothèque'),
       ),
@@ -43,7 +44,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
               margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: context.appSurface,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(
@@ -51,17 +52,20 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                   _TypeTab(
                     label: 'Duas',
                     selected: state.contentType == LibraryContentType.duas,
-                    onTap: () => notifier.setContentType(LibraryContentType.duas),
+                    onTap: () =>
+                        notifier.setContentType(LibraryContentType.duas),
                   ),
                   _TypeTab(
                     label: 'Adhkar',
                     selected: state.contentType == LibraryContentType.adhkar,
-                    onTap: () => notifier.setContentType(LibraryContentType.adhkar),
+                    onTap: () =>
+                        notifier.setContentType(LibraryContentType.adhkar),
                   ),
                   _TypeTab(
                     label: 'Hadiths',
                     selected: state.contentType == LibraryContentType.hadiths,
-                    onTap: () => notifier.setContentType(LibraryContentType.hadiths),
+                    onTap: () =>
+                        notifier.setContentType(LibraryContentType.hadiths),
                   ),
                 ],
               ),
@@ -83,19 +87,13 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                           },
                         )
                       : null,
-                  filled: true,
-                  fillColor: AppColors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide.none,
-                  ),
                 ),
               ),
             ),
             const SizedBox(height: 12),
             SizedBox(
               height: 40,
-              child: _buildCategoryChips(state, notifier),
+              child: _buildCategoryChips(state, notifier, context),
             ),
             const SizedBox(height: 12),
             Expanded(
@@ -115,7 +113,8 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
     );
   }
 
-  Widget _buildCategoryChips(LibraryState state, LibraryNotifier notifier) {
+  Widget _buildCategoryChips(
+      LibraryState state, LibraryNotifier notifier, BuildContext context) {
     List<String> categories;
     switch (state.contentType) {
       case LibraryContentType.duas:
@@ -222,7 +221,9 @@ class _TypeTab extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                color: selected ? AppColors.white : AppColors.grey,
+                color: selected
+                    ? AppColors.white
+                    : (context.isDark ? AppColors.greyLight : AppColors.grey),
                 fontWeight: FontWeight.w600,
                 fontSize: 13,
               ),
@@ -253,17 +254,17 @@ class _CategoryChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: selected ? AppColors.gold : AppColors.white,
+          color: selected ? AppColors.gold : context.appSurface,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: selected ? AppColors.gold : AppColors.greyLight,
+            color: selected ? AppColors.gold : context.appBorder,
           ),
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
-              color: selected ? AppColors.white : AppColors.black,
+              color: selected ? AppColors.white : context.appTextPrimary,
               fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
               fontSize: 13,
             ),
@@ -283,7 +284,7 @@ class _EmptyState extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.search_off, size: 60, color: AppColors.grey),
+          Icon(Icons.search_off, size: 60, color: context.appTextSecondary),
           const SizedBox(height: 16),
           Text(
             'Aucun résultat',
@@ -311,9 +312,9 @@ class _DuaCard extends ConsumerWidget {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: context.appSurface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.greyLight),
+          border: Border.all(color: context.appBorder),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -332,7 +333,8 @@ class _DuaCard extends ConsumerWidget {
                 if (isFav)
                   const Icon(Icons.favorite, color: AppColors.gold, size: 18),
                 const SizedBox(width: 6),
-                Text(dua.category, style: Theme.of(context).textTheme.bodySmall),
+                Text(dua.category,
+                    style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
             const SizedBox(height: 16),
@@ -350,12 +352,16 @@ class _DuaCard extends ConsumerWidget {
             const SizedBox(height: 16),
             Text(
               dua.textFr,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.6),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(height: 1.6),
             ),
             const SizedBox(height: 12),
             Row(
               children: [
-                const Icon(Icons.menu_book, size: 14, color: AppColors.grey),
+                Icon(Icons.menu_book,
+                    size: 14, color: context.appTextSecondary),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
@@ -363,7 +369,8 @@ class _DuaCard extends ConsumerWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios, size: 12, color: AppColors.grey),
+                Icon(Icons.arrow_forward_ios,
+                    size: 12, color: context.appTextSecondary),
               ],
             ),
           ],
@@ -384,9 +391,9 @@ class _AdhkarCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.appSurface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.greyLight),
+        border: Border.all(color: context.appBorder),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -403,7 +410,8 @@ class _AdhkarCard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.goldLight,
                   borderRadius: BorderRadius.circular(12),
@@ -434,22 +442,23 @@ class _AdhkarCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             adhkar.textFr,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.6),
+            style:
+                Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.6),
           ),
           const SizedBox(height: 12),
           Text(
             adhkar.transliteration,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   fontStyle: FontStyle.italic,
-                  color: AppColors.grey,
                 ),
           ),
           const SizedBox(height: 12),
-          const Divider(color: AppColors.greyLight),
+          Divider(color: context.appBorder),
           const SizedBox(height: 8),
           Row(
             children: [
-              const Icon(Icons.menu_book, size: 14, color: AppColors.grey),
+              Icon(Icons.menu_book,
+                  size: 14, color: context.appTextSecondary),
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
@@ -476,9 +485,9 @@ class _HadithCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.appSurface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.greyLight),
+        border: Border.all(color: context.appBorder),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -501,9 +510,9 @@ class _HadithCard extends StatelessWidget {
           const SizedBox(height: 16),
           Container(
             padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
-              color: AppColors.cream,
-              border: Border(
+            decoration: BoxDecoration(
+              color: context.appSurfaceVariant,
+              border: const Border(
                 left: BorderSide(color: AppColors.gold, width: 4),
               ),
             ),
@@ -530,7 +539,7 @@ class _HadithCard extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             children: [
-              const Icon(Icons.person, size: 14, color: AppColors.grey),
+              Icon(Icons.person, size: 14, color: context.appTextSecondary),
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
