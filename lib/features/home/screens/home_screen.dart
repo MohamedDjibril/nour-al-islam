@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../config/theme/app_colors.dart';
 import '../../../config/routes/app_router.dart';
-import '../../onboarding/providers/onboarding_provider.dart';
 import '../../tracker/providers/tracker_provider.dart';
 import '../widgets/sos_button.dart';
 import '../widgets/streak_card.dart';
@@ -32,7 +31,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         context.go(AppRoutes.favorites);
         break;
       case 4:
-        // Profil - à venir
         break;
       default:
         break;
@@ -51,12 +49,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () async {
-              await ref.read(onboardingProvider.notifier).reset();
-              if (context.mounted) {
-                context.go(AppRoutes.welcome);
-              }
-            },
+            onPressed: () => context.push(AppRoutes.settings),
           ),
         ],
       ),

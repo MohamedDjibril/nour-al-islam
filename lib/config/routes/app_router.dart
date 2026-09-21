@@ -10,6 +10,7 @@ import '../../features/home/screens/home_screen.dart';
 import '../../features/library/screens/library_screen.dart';
 import '../../features/library/screens/dua_detail_screen.dart';
 import '../../features/library/screens/favorites_screen.dart';
+import '../../features/settings/screens/settings_screen.dart';
 import '../../features/sos/screens/sos_start_screen.dart';
 import '../../features/sos/screens/sos_session_screen.dart';
 import '../../features/sos/screens/sos_complete_screen.dart';
@@ -22,6 +23,7 @@ class AppRoutes {
   static const String home = '/home';
   static const String library = '/library';
   static const String favorites = '/favorites';
+  static const String settings = '/settings';
   static const String duaDetail = '/dua/:id';
 
   // SOS
@@ -64,6 +66,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.favorites,
         builder: (context, state) => const FavoritesScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.settings,
+        builder: (context, state) => const SettingsScreen(),
       ),
       GoRoute(
         path: AppRoutes.duaDetail,
