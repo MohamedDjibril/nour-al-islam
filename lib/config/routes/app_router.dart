@@ -7,6 +7,7 @@ import '../../features/onboarding/screens/welcome_screen.dart';
 import '../../features/onboarding/screens/language_screen.dart';
 import '../../features/onboarding/screens/notifications_screen.dart';
 import '../../features/home/screens/home_screen.dart';
+import '../../features/tracker/screens/tracker_screen.dart';
 import '../../features/library/screens/library_screen.dart';
 import '../../features/library/screens/dua_detail_screen.dart';
 import '../../features/library/screens/adhkar_detail_screen.dart';
@@ -23,16 +24,15 @@ class AppRoutes {
   static const String language = '/onboarding/language';
   static const String notifications = '/onboarding/notifications';
   static const String home = '/home';
+  static const String tracker = '/tracker';
   static const String library = '/library';
   static const String favorites = '/favorites';
   static const String settings = '/settings';
 
-  // Détails
   static const String duaDetail = '/dua/:id';
   static const String adhkarDetail = '/adhkar/:id';
   static const String hadithDetail = '/hadith/:id';
 
-  // SOS
   static const String sosStart = '/sos/start';
   static const String sosSession = '/sos/session';
   static const String sosComplete = '/sos/complete';
@@ -66,6 +66,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.home,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.tracker,
+        builder: (context, state) => const TrackerScreen(),
       ),
       GoRoute(
         path: AppRoutes.library,

@@ -25,6 +25,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void _onNavTap(int index) {
     setState(() => _navIndex = index);
     switch (index) {
+      case 1:
+        context.go(AppRoutes.tracker);
+        break;
       case 2:
         context.go(AppRoutes.library);
         break;
