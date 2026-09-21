@@ -11,6 +11,7 @@ class TrackerState {
   final DateTime? lastCompletedDate;
   final List<DailyStats> weeklyStats;
   final int totalSosSessions;
+  final int totalDhikr;
 
   const TrackerState({
     this.habits = const [],
@@ -18,6 +19,7 @@ class TrackerState {
     this.lastCompletedDate,
     this.weeklyStats = const [],
     this.totalSosSessions = 0,
+    this.totalDhikr = 0,
   });
 
   TrackerState copyWith({
@@ -26,6 +28,7 @@ class TrackerState {
     DateTime? lastCompletedDate,
     List<DailyStats>? weeklyStats,
     int? totalSosSessions,
+    int? totalDhikr,
   }) {
     return TrackerState(
       habits: habits ?? this.habits,
@@ -33,6 +36,7 @@ class TrackerState {
       lastCompletedDate: lastCompletedDate ?? this.lastCompletedDate,
       weeklyStats: weeklyStats ?? this.weeklyStats,
       totalSosSessions: totalSosSessions ?? this.totalSosSessions,
+      totalDhikr: totalDhikr ?? this.totalDhikr,
     );
   }
 
@@ -298,7 +302,10 @@ class TrackerNotifier extends StateNotifier<TrackerState> {
       return s;
     }).toList();
 
-    state = state.copyWith(weeklyStats: updatedStats);
+    state = state.copyWith(
+      weeklyStats: updatedStats,
+      totalDhikr: state.totalDhikr + 1,
+    );
     _saveStats();
   }
 

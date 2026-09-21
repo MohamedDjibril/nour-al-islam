@@ -24,24 +24,17 @@ class TrackerScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // ===== Carte de série (streak) =====
               _StreakHeroCard(streakDays: state.streakDays),
               const SizedBox(height: 20),
-
-              // ===== Graphique hebdomadaire =====
               WeeklyChart(stats: state.weeklyStats),
               const SizedBox(height: 20),
-
-              // ===== Statistiques rapides =====
               _StatsGrid(
                 weeklyAverage: (state.weeklyAverage * 100).toStringAsFixed(0),
                 perfectDays: state.perfectDaysThisWeek,
                 sosSessions: state.totalSosSessions,
-                totalHabits: state.habits.length,
+                totalDhikr: state.totalDhikr,
               ),
               const SizedBox(height: 20),
-
-              // ===== Habitudes du jour (récap) =====
               Text(
                 'Récap du jour',
                 style: Theme.of(context).textTheme.titleLarge,
@@ -62,7 +55,6 @@ class TrackerScreen extends ConsumerWidget {
   }
 }
 
-// ========== CARTE DE SÉRIE (HERO) ==========
 class _StreakHeroCard extends StatelessWidget {
   final int streakDays;
 
@@ -137,18 +129,17 @@ class _StreakHeroCard extends StatelessWidget {
   }
 }
 
-// ========== GRILLE DE STATS ==========
 class _StatsGrid extends StatelessWidget {
   final String weeklyAverage;
   final int perfectDays;
   final int sosSessions;
-  final int totalHabits;
+  final int totalDhikr;
 
   const _StatsGrid({
     required this.weeklyAverage,
     required this.perfectDays,
     required this.sosSessions,
-    required this.totalHabits,
+    required this.totalDhikr,
   });
 
   @override
@@ -196,9 +187,9 @@ class _StatsGrid extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: _StatCard(
-                icon: Icons.track_changes,
-                label: 'Habitudes',
-                value: '$totalHabits',
+                icon: Icons.auto_awesome,
+                label: 'Dhikr',
+                value: '$totalDhikr',
                 color: AppColors.green,
               ),
             ),
@@ -262,7 +253,6 @@ class _StatCard extends StatelessWidget {
   }
 }
 
-// ========== LIGNE D'HABITUDE ==========
 class _HabitRow extends StatelessWidget {
   final String name;
   final int current;
