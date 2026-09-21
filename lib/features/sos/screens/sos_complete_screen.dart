@@ -6,12 +6,27 @@ import '../../../config/theme/app_colors.dart';
 import '../../../config/theme/theme_extensions.dart';
 import '../../../config/routes/app_router.dart';
 import '../providers/sos_provider.dart';
+import '../../tracker/providers/tracker_provider.dart';
 
-class SosCompleteScreen extends ConsumerWidget {
+class SosCompleteScreen extends ConsumerStatefulWidget {
   const SosCompleteScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SosCompleteScreen> createState() => _SosCompleteScreenState();
+}
+
+class _SosCompleteScreenState extends ConsumerState<SosCompleteScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Enregistre la session SOS dans le tracker
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(trackerProvider.notifier).recordSosSession();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final verse = ref.watch(sosProvider).verse;
 
     return Scaffold(

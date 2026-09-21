@@ -9,6 +9,7 @@ import '../../../config/theme/theme_extensions.dart';
 import '../data/adhkar_data.dart';
 import '../models/adhkar.dart';
 import '../providers/favorites_provider.dart';
+import '../../tracker/providers/tracker_provider.dart';
 
 class AdhkarDetailScreen extends ConsumerStatefulWidget {
   final String adhkarId;
@@ -22,6 +23,7 @@ class AdhkarDetailScreen extends ConsumerStatefulWidget {
 
 class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
   int _counter = 0;
+  bool _alreadyRecorded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,6 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // ===== Catégorie =====
               Center(
                 child: Container(
                   padding:
@@ -82,8 +83,6 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // ===== Titre =====
               Text(
                 adhkar.title,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -97,12 +96,7 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
               // ===== Compteur interactif =====
               Center(
                 child: GestureDetector(
-                  onTap: () {
-                    if (_counter < adhkar.repetitions) {
-                      setState(() => _counter++);
-                      HapticFeedback.lightImpact();
-                    }
-                  },
+                  onTap: () => _increment(adhkar),
                   child: Container(
                     width: 140,
                     height: 140,
@@ -150,7 +144,10 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
               const SizedBox(height: 12),
               Center(
                 child: TextButton.icon(
-                  onPressed: () => setState(() => _counter = 0),
+                  onPressed: () => setState(() {
+                    _counter = 0;
+                    _alreadyRecorded = false;
+                  }),
                   icon: const Icon(Icons.refresh, color: AppColors.grey),
                   label: const Text(
                     'Réinitialiser',
@@ -184,8 +181,6 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // ===== Traduction =====
               _Section(
                 icon: Icons.translate,
                 title: 'Traduction',
@@ -198,8 +193,6 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
-              // ===== Translittération =====
               _Section(
                 icon: Icons.record_voice_over,
                 title: 'Prononciation',
@@ -212,8 +205,6 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
-              // ===== Source =====
               _Section(
                 icon: Icons.menu_book,
                 title: 'Source',
@@ -226,8 +217,6 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
                 ),
               ),
               const SizedBox(height: 40),
-
-              // ===== Bouton Copier =====
               ElevatedButton.icon(
                 onPressed: () => _copy(context, adhkar),
                 icon: const Icon(Icons.copy),
@@ -238,6 +227,20 @@ class _AdhkarDetailScreenState extends ConsumerState<AdhkarDetailScreen> {
         ),
       ),
     );
+  }
+
+  /// Incrémente le compteur et enregistre quand atteint
+  void _increment(Adhkar adhkar) {
+    if (_counter >= adhkar.repetitions) return;
+
+    setState(() => _counter++);
+    HapticFeedback.lightImpact();
+
+    // Enregistrer dans le tracker quand on atteint le max
+    if (_counter >= adhkar.repetitions && !_alreadyRecorded) {
+      _alreadyRecorded = true;
+      ref.read(trackerProvider.notifier).recordDhikr();
+    }
   }
 
   void _copy(BuildContext context, Adhkar adhkar) {

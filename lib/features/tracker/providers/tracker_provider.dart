@@ -284,6 +284,24 @@ class TrackerNotifier extends StateNotifier<TrackerState> {
     _saveStats();
   }
 
+  /// Enregistre un dhikr complété
+  Future<void> recordDhikr() async {
+    final today = DateTime.now();
+    final todayKey = DateTime(today.year, today.month, today.day);
+
+    final updatedStats = state.weeklyStats.map((s) {
+      if (s.date.year == todayKey.year &&
+          s.date.month == todayKey.month &&
+          s.date.day == todayKey.day) {
+        return s.copyWith(dhikrCount: s.dhikrCount + 1);
+      }
+      return s;
+    }).toList();
+
+    state = state.copyWith(weeklyStats: updatedStats);
+    _saveStats();
+  }
+
   /// Réinitialise les habitudes (nouveau jour)
   void resetForNewDay() {
     final now = DateTime.now();

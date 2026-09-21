@@ -89,7 +89,6 @@ class _SosSessionScreenState extends ConsumerState<SosSessionScreen> {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              // ===== Timer =====
               Container(
                 width: 120,
                 height: 120,
@@ -116,8 +115,6 @@ class _SosSessionScreenState extends ConsumerState<SosSessionScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-
-              // ===== Verset arabe =====
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -125,9 +122,10 @@ class _SosSessionScreenState extends ConsumerState<SosSessionScreen> {
                       Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: AppColors.white,
+                          color: context.appSurface,
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppColors.goldLight, width: 2),
+                          border: Border.all(
+                              color: AppColors.goldLight, width: 2),
                         ),
                         child: Column(
                           children: [
@@ -168,8 +166,6 @@ class _SosSessionScreenState extends ConsumerState<SosSessionScreen> {
                         ),
                       ),
                       const SizedBox(height: 24),
-
-                      // ===== Réflexion =====
                       if (!_showReflection)
                         TextButton.icon(
                           onPressed: () =>
@@ -211,8 +207,6 @@ class _SosSessionScreenState extends ConsumerState<SosSessionScreen> {
                   ),
                 ),
               ),
-
-              // ===== Bouton terminer =====
               const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
