@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 
 class BottomNav extends StatelessWidget {
   final int currentIndex;
@@ -16,10 +17,10 @@ class BottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.appSurface,
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withValues(alpha: 0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),
@@ -28,7 +29,7 @@ class BottomNav extends StatelessWidget {
       child: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: onTap,
-        backgroundColor: AppColors.white,
+        backgroundColor: context.appSurface,
         indicatorColor: AppColors.goldLight,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         destinations: const [

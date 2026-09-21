@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 
 class ActionCard extends StatelessWidget {
   final IconData icon;
@@ -26,9 +27,9 @@ class ActionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: context.appSurface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.greyLight),
+          border: Border.all(color: context.appBorder),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -6,6 +6,14 @@ import 'app_colors.dart';
 class AppTheme {
   AppTheme._();
 
+  // ========== COULEURS DYNAMIQUES ==========
+  static const _darkBackground = Color(0xFF0A1520);
+  static const _darkSurface = Color(0xFF1A2A3A);
+  static const _darkSurfaceVariant = Color(0xFF243447);
+  static const _darkBorder = Color(0xFF2A3A4A);
+  static const _darkTextSecondary = Color(0xFFB0B8C0);
+
+  // ========== THÈME CLAIR ==========
   static ThemeData get lightTheme {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: AppColors.gold,
@@ -14,7 +22,7 @@ class AppTheme {
       onPrimary: AppColors.white,
       secondary: AppColors.green,
       onSecondary: AppColors.white,
-      surface: AppColors.cream,
+      surface: AppColors.white,
       onSurface: AppColors.black,
       error: AppColors.error,
       onError: AppColors.white,
@@ -57,9 +65,19 @@ class AppTheme {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
+      dividerColor: AppColors.greyLight,
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
+        ),
+      ),
     );
   }
 
+  // ========== THÈME SOMBRE ==========
   static ThemeData get darkTheme {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: AppColors.gold,
@@ -68,7 +86,7 @@ class AppTheme {
       onPrimary: AppColors.black,
       secondary: AppColors.greenLight,
       onSecondary: AppColors.white,
-      surface: AppColors.darkBlue,
+      surface: _darkSurface,
       onSurface: AppColors.white,
       error: AppColors.error,
       onError: AppColors.white,
@@ -77,10 +95,10 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: AppColors.darkBlue,
+      scaffoldBackgroundColor: _darkBackground,
       textTheme: _textThemeDark,
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.darkBlue,
+        backgroundColor: _darkBackground,
         foregroundColor: AppColors.white,
         elevation: 0,
         centerTitle: true,
@@ -105,15 +123,25 @@ class AppTheme {
         ),
       ),
       cardTheme: CardThemeData(
-        color: AppColors.darkBlueLight,
+        color: _darkSurface,
         elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
+      dividerColor: _darkBorder,
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: _darkSurfaceVariant,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
+        ),
+      ),
     );
   }
 
+  // ========== TYPOGRAPHIE CLAIRE ==========
   static final TextTheme _textTheme = TextTheme(
     displayLarge: GoogleFonts.poppins(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.black),
     displayMedium: GoogleFonts.poppins(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.black),
@@ -132,6 +160,7 @@ class AppTheme {
     labelSmall: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.grey),
   );
 
+  // ========== TYPOGRAPHIE SOMBRE ==========
   static final TextTheme _textThemeDark = TextTheme(
     displayLarge: GoogleFonts.poppins(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.white),
     displayMedium: GoogleFonts.poppins(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.white),
@@ -144,9 +173,9 @@ class AppTheme {
     titleSmall: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.white),
     bodyLarge: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.white),
     bodyMedium: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.white),
-    bodySmall: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.greyLight),
+    bodySmall: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: _darkTextSecondary),
     labelLarge: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.white),
     labelMedium: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.white),
-    labelSmall: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.greyLight),
+    labelSmall: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w500, color: _darkTextSecondary),
   );
 }

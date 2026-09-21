@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/theme_extensions.dart';
 import '../../tracker/models/habit.dart';
 
 class HabitTile extends StatelessWidget {
@@ -38,10 +39,10 @@ class HabitTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.appSurface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isCompleted ? AppColors.success : AppColors.greyLight,
+          color: isCompleted ? AppColors.success : context.appBorder,
           width: isCompleted ? 2 : 1,
         ),
       ),
@@ -86,7 +87,7 @@ class HabitTile extends StatelessWidget {
           if (habit.target > 1) ...[
             IconButton(
               icon: const Icon(Icons.remove_circle_outline),
-              color: AppColors.grey,
+              color: context.appTextSecondary,
               onPressed: habit.current > 0 ? onDecrement : null,
             ),
             IconButton(
