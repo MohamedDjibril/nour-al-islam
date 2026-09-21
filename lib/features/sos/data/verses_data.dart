@@ -1,161 +1,351 @@
 import '../models/verse.dart';
 
-/// Base de versets vérifiés pour le module SOS
+/// Base de 30 versets vérifiés pour le module SOS
 ///
 /// ⚠️ À FAIRE : Faire relire par un enseignant qualifié
-/// ⚠️ Les traductions sont inspirées de Muhammad Hamidullah
+/// ⚠️ Traductions inspirées de Muhammad Hamidullah (modernisées)
 class VersesData {
   VersesData._();
 
   static const List<Verse> all = [
-    // ===== PATIENCE (Sabr) =====
+    // ========== PATIENCE (Sabr) – 6 versets ==========
     Verse(
       id: 'sabr_1',
       surah: 2,
       verseNumber: 153,
       textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',
-      textFr:
-          'Ô les croyants ! Cherchez secours dans l\'endurance et la prière. Car Allah est avec ceux qui sont endurants.',
+      textFr: 'Ô les croyants ! Cherchez secours dans l\'endurance et la prière. Car Allah est avec ceux qui sont endurants.',
       reference: 'Al-Baqara, 2:153',
       theme: 'patience',
-      reflection:
-          'Qu\'est-ce qui te pousse à fuir cette épreuve ? Allah est avec toi.',
-      action:
-          'Fais 2 rak\'at de prière et demande à Allah la force de résister.',
+      reflection: 'Qu\'est-ce qui te pousse à fuir cette épreuve ? Allah est avec toi.',
+      action: 'Fais 2 rak\'at de prière et demande à Allah la force de résister.',
     ),
     Verse(
       id: 'sabr_2',
       surah: 39,
       verseNumber: 10,
       textAr: 'إِنَّمَا يُوَفَّى الصَّابِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍ',
-      textFr:
-          'Les endurants auront leur pleine récompense sans compter.',
+      textFr: 'Les endurants auront leur pleine récompense sans compter.',
       reference: 'Az-Zumar, 39:10',
       theme: 'patience',
-      reflection:
-          'Ta patience d\'aujourd\'hui sera récompensée au-delà de ce que tu imagines.',
-      action:
-          'Écris une chose pour laquelle tu es reconnaissant en ce moment.',
+      reflection: 'Ta patience d\'aujourd\'hui sera récompensée au-delà de ce que tu imagines.',
+      action: 'Écris une chose pour laquelle tu es reconnaissant en ce moment.',
+    ),
+    Verse(
+      id: 'sabr_3',
+      surah: 3,
+      verseNumber: 200,
+      textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ',
+      textFr: 'Ô les croyants ! Soyez endurants, rivalisez d\'endurance, restez fermes et craignez Allah afin que vous réussissiez.',
+      reference: 'Al-Imran, 3:200',
+      theme: 'patience',
+      reflection: 'La patience n\'est pas passive. C\'est une force active qui te rapproche d\'Allah.',
+      action: 'Prends 3 respirations profondes et dis : "Allahumma a\'inni" (Ô Allah, aide-moi).',
+    ),
+    Verse(
+      id: 'sabr_4',
+      surah: 16,
+      verseNumber: 127,
+      textAr: 'وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ',
+      textFr: 'Et sois endurant. Ton endurance ne vient que d\'Allah.',
+      reference: 'An-Nahl, 16:127',
+      theme: 'patience',
+      reflection: 'Tu n\'es pas seul dans l\'épreuve. Allah te donne la force de patienter.',
+      action: 'Dis 3 fois : La hawla wa la quwwata illa billah.',
+    ),
+    Verse(
+      id: 'sabr_5',
+      surah: 2,
+      verseNumber: 155,
+      textAr: 'وَبَشِّرِ الصَّابِرِينَ',
+      textFr: 'Et annonce la bonne nouvelle aux endurants.',
+      reference: 'Al-Baqara, 2:155',
+      theme: 'patience',
+      reflection: 'Chaque instant de patience est une bonne nouvelle qui t\'attend.',
+      action: 'Fais une dua pour ceux qui traversent la même épreuve que toi.',
+    ),
+    Verse(
+      id: 'sabr_6',
+      surah: 47,
+      verseNumber: 31,
+      textAr: 'وَلَنَبْلُوَنَّكُمْ حَتَّىٰ نَعْلَمَ الْمُجَاهِدِينَ مِنكُمْ وَالصَّابِرِينَ',
+      textFr: 'Nous vous éprouverons certes afin de distinguer ceux d\'entre vous qui luttent et qui sont endurants.',
+      reference: 'Muhammad, 47:31',
+      theme: 'patience',
+      reflection: 'Cette épreuve a un but : elle révèle ta vraie force.',
+      action: 'Dis : Hasbunallahu wa ni\'mal wakil.',
     ),
 
-    // ===== REPENTANCE (Tawba) =====
+    // ========== REPENTANCE (Tawba) – 6 versets ==========
     Verse(
       id: 'tawba_1',
       surah: 39,
       verseNumber: 53,
       textAr: 'قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا',
-      textFr:
-          'Dis : Ô Mes serviteurs qui avez commis des excès à votre propre détriment, ne désespérez pas de la miséricorde d\'Allah. Car Allah pardonne tous les péchés.',
+      textFr: 'Dis : Ô Mes serviteurs qui avez commis des excès à votre propre détriment, ne désespérez pas de la miséricorde d\'Allah. Car Allah pardonne tous les péchés.',
       reference: 'Az-Zumar, 39:53',
       theme: 'repentance',
-      reflection:
-          'Allah t\'attend, peu importe ce que tu as fait. Ne désespère jamais.',
-      action:
-          'Fais une dua de pardon sincère et engage-toi à recommencer.',
+      reflection: 'Allah t\'attend, peu importe ce que tu as fait. Ne désespère jamais.',
+      action: 'Fais une dua de pardon sincère et engage-toi à recommencer.',
     ),
     Verse(
       id: 'tawba_2',
       surah: 25,
       verseNumber: 70,
       textAr: 'إِلَّا مَن تَابَ وَآمَنَ وَعَمِلَ عَمَلًا صَالِحًا فَأُولَٰئِكَ يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ',
-      textFr:
-          'Sauf celui qui se repent, croit et accomplit de bonnes œuvres. À ceux-là, Allah changera leurs mauvaises actions en bonnes.',
+      textFr: 'Sauf celui qui se repent, croit et accomplit de bonnes œuvres. À ceux-là, Allah changera leurs mauvaises actions en bonnes.',
       reference: 'Al-Furqan, 25:70',
       theme: 'repentance',
-      reflection:
-          'Allah peut transformer ta chute en une élévation. Repens-toi maintenant.',
-      action:
-          'Fais 3 istighfar (Astaghfirullah) et recommence avec un cœur purifié.',
+      reflection: 'Allah peut transformer ta chute en une élévation. Repens-toi maintenant.',
+      action: 'Fais 3 istighfar (Astaghfirullah) et recommence avec un cœur purifié.',
+    ),
+    Verse(
+      id: 'tawba_3',
+      surah: 66,
+      verseNumber: 8,
+      textAr: 'يَا أَيُّهَا الَّذِينَ آمَنُوا تُوبُوا إِلَى اللَّهِ تَوْبَةً نَّصُوحًا',
+      textFr: 'Ô les croyants ! Repentez-vous à Allah d\'un repentir sincère.',
+      reference: 'At-Tahrim, 66:8',
+      theme: 'repentance',
+      reflection: 'Un repentir sincère efface tout. Allah aime celui qui revient vers Lui.',
+      action: 'Fais une dua sincère de tawba, en regrettant vraiment.',
+    ),
+    Verse(
+      id: 'tawba_4',
+      surah: 3,
+      verseNumber: 135,
+      textAr: 'وَالَّذِينَ إِذَا فَعَلُوا فَاحِشَةً أَوْ ظَلَمُوا أَنفُسَهُمْ ذَكَرُوا اللَّهَ فَاسْتَغْفَرُوا لِذُنُوبِهِمْ',
+      textFr: 'Et ceux qui, ayant commis une turpitude ou s\'étant fait du tort, se rappellent d\'Allah et demandent pardon pour leurs péchés.',
+      reference: 'Al-Imran, 3:135',
+      theme: 'repentance',
+      reflection: 'Le croyant tombe, mais il se relève en se rappelant d\'Allah.',
+      action: 'Écris une lettre de pardon à toi-même et brûle-la symboliquement.',
+    ),
+    Verse(
+      id: 'tawba_5',
+      surah: 20,
+      verseNumber: 82,
+      textAr: 'وَإِنِّي لَغَفَّارٌ لِّمَن تَابَ وَآمَنَ وَعَمِلَ صَالِحًا ثُمَّ اهْتَدَىٰ',
+      textFr: 'Et Je suis certes Très-Pardonneur pour celui qui se repent, croit, fait bonne œuvre et se met sur la bonne voie.',
+      reference: 'Ta-Ha, 20:82',
+      theme: 'repentance',
+      reflection: 'La miséricorde d\'Allah est immense. Elle couvre tous ceux qui reviennent.',
+      action: 'Dis 7 fois : Astaghfirullaha wa atubu ilayh.',
+    ),
+    Verse(
+      id: 'tawba_6',
+      surah: 24,
+      verseNumber: 31,
+      textAr: 'وَتُوبُوا إِلَى اللَّهِ جَمِيعًا أَيُّهَ الْمُؤْمِنُونَ لَعَلَّكُمْ تُفْلِحُونَ',
+      textFr: 'Et repentez-vous tous à Allah, ô croyants, afin que vous récoltiez le succès.',
+      reference: 'An-Nur, 24:31',
+      theme: 'repentance',
+      reflection: 'La réussite commence par le retour vers Allah.',
+      action: 'Fais une promesse : une chose que tu arrêtes dès aujourd\'hui.',
     ),
 
-    // ===== ESPOIR (Raja) =====
+    // ========== ESPOIR (Raja) – 6 versets ==========
     Verse(
       id: 'raja_1',
       surah: 94,
       verseNumber: 5,
       textAr: 'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا',
-      textFr:
-          'À côté de la difficulté est, certes, une facilité.',
+      textFr: 'À côté de la difficulté est, certes, une facilité.',
       reference: 'Ash-Sharh, 94:5',
       theme: 'espoir',
-      reflection:
-          'Après chaque épreuve, il y a une délivrance. Allah ne t\'oublie pas.',
-      action:
-          'Prends 3 respirations profondes et dis : Hasbunallah wa ni\'mal wakil.',
+      reflection: 'Après chaque épreuve, il y a une délivrance. Allah ne t\'oublie pas.',
+      action: 'Prends 3 respirations profondes et dis : Hasbunallah wa ni\'mal wakil.',
     ),
     Verse(
       id: 'raja_2',
       surah: 65,
       verseNumber: 3,
       textAr: 'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ',
-      textFr:
-          'Et quiconque place sa confiance en Allah, Il lui suffit.',
+      textFr: 'Et quiconque place sa confiance en Allah, Il lui suffit.',
       reference: 'At-Talaq, 65:3',
       theme: 'espoir',
-      reflection:
-          'Remets ton fardeau à Allah. Il s\'occupe de tout.',
-      action:
-          'Dis 3 fois : Hasbiyallahu la ilaha illa Huwa.',
+      reflection: 'Remets ton fardeau à Allah. Il s\'occupe de tout.',
+      action: 'Dis 3 fois : Hasbiyallahu la ilaha illa Huwa.',
+    ),
+    Verse(
+      id: 'raja_3',
+      surah: 3,
+      verseNumber: 173,
+      textAr: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',
+      textFr: 'Allah nous suffit. Il est le meilleur Garant.',
+      reference: 'Al-Imran, 3:173',
+      theme: 'espoir',
+      reflection: 'Allah suffit à celui qui Lui confie ses affaires.',
+      action: 'Fais une liste de 3 soucis et confie-les à Allah.',
+    ),
+    Verse(
+      id: 'raja_4',
+      surah: 12,
+      verseNumber: 87,
+      textAr: 'وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ ۖ إِنَّهُ لَا يَيْأَسُ مِن رَّوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ',
+      textFr: 'Ne désespérez pas de la miséricorde d\'Allah. Seuls les mécréants désespèrent de la miséricorde d\'Allah.',
+      reference: 'Yusuf, 12:87',
+      theme: 'espoir',
+      reflection: 'Le désespoir n\'est pas musulman. L\'espoir est une adoration.',
+      action: 'Dis 3 fois : Ya Allah, je place mon espoir en Toi.',
+    ),
+    Verse(
+      id: 'raja_5',
+      surah: 40,
+      verseNumber: 60,
+      textAr: 'وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ',
+      textFr: 'Et votre Seigneur dit : Appelez-Moi, Je vous répondrai.',
+      reference: 'Ghafir, 40:60',
+      theme: 'espoir',
+      reflection: 'Allah écoute chaque dua. Aucune n\'est perdue.',
+      action: 'Fais une dua personnelle, précise, sincère.',
+    ),
+    Verse(
+      id: 'raja_6',
+      surah: 21,
+      verseNumber: 87,
+      textAr: 'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ',
+      textFr: 'Pas de divinité à part Toi ! Gloire à Toi ! J\'ai vraiment été du nombre des injustes.',
+      reference: 'Al-Anbiya, 21:87',
+      theme: 'espoir',
+      reflection: 'La dua de Yunus (as) est puissante. Elle ouvre les portes fermées.',
+      action: 'Dis 3 fois cette dua, comme le Prophète Yunus.',
     ),
 
-    // ===== GRATITUDE (Shukr) =====
+    // ========== GRATITUDE (Shukr) – 6 versets ==========
     Verse(
       id: 'shukr_1',
       surah: 14,
       verseNumber: 7,
       textAr: 'لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ',
-      textFr:
-          'Si vous êtes reconnaissants, Je vous donnerai davantage.',
+      textFr: 'Si vous êtes reconnaissants, Je vous donnerai davantage.',
       reference: 'Ibrahim, 14:7',
       theme: 'gratitude',
-      reflection:
-          'Remercie Allah pour ce que tu as, et Il t\'en donnera plus.',
-      action:
-          'Dis 3 fois : Alhamdulillahi rabbil alamin.',
+      reflection: 'Remercie Allah pour ce que tu as, et Il t\'en donnera plus.',
+      action: 'Dis 3 fois : Alhamdulillahi rabbil alamin.',
     ),
     Verse(
       id: 'shukr_2',
       surah: 2,
       verseNumber: 152,
       textAr: 'فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ',
-      textFr:
-          'Souvenez-vous de Moi donc. Je me souviendrai de vous. Remerciez-Moi et ne soyez pas ingrats.',
+      textFr: 'Souvenez-vous de Moi donc. Je me souviendrai de vous. Remerciez-Moi et ne soyez pas ingrats.',
       reference: 'Al-Baqara, 2:152',
       theme: 'gratitude',
-      reflection:
-          'Quand tu te souviens d\'Allah, Il se souvient de toi.',
-      action:
-          'Fais une liste mentale de 3 bienfaits d\'Allah dans ta journée.',
+      reflection: 'Quand tu te souviens d\'Allah, Il se souvient de toi.',
+      action: 'Fais une liste mentale de 3 bienfaits d\'Allah dans ta journée.',
+    ),
+    Verse(
+      id: 'shukr_3',
+      surah: 16,
+      verseNumber: 18,
+      textAr: 'وَإِن تَعُدُّوا نِعْمَةَ اللَّهِ لَا تُحْصُوهَا',
+      textFr: 'Et si vous comptiez les bienfaits d\'Allah, vous ne sauriez les dénombrer.',
+      reference: 'An-Nahl, 16:18',
+      theme: 'gratitude',
+      reflection: 'Les bienfaits d\'Allah sont infinis. Chaque souffle est une grâce.',
+      action: 'Prends 1 minute pour respirer lentement et dire "Alhamdulillah" à chaque expiration.',
+    ),
+    Verse(
+      id: 'shukr_4',
+      surah: 27,
+      verseNumber: 19,
+      textAr: 'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ',
+      textFr: 'Seigneur, inspire-moi de rendre grâce pour le bienfait dont Tu m\'as comblé ainsi que mes parents.',
+      reference: 'An-Naml, 27:19',
+      theme: 'gratitude',
+      reflection: 'La gratitude inclut tes parents. N\'oublie pas ceux qui t\'ont élevé.',
+      action: 'Appelle ou envoie un message à tes parents pour les remercier.',
+    ),
+    Verse(
+      id: 'shukr_5',
+      surah: 31,
+      verseNumber: 12,
+      textAr: 'وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِ',
+      textFr: 'Et quiconque est reconnaissant, c\'est pour lui-même qu\'il est reconnaissant.',
+      reference: 'Luqman, 31:12',
+      theme: 'gratitude',
+      reflection: 'La gratitude t\'élève. Elle te rend plus heureux et plus proche d\'Allah.',
+      action: 'Dis 100 fois : Alhamdulillah.',
+    ),
+    Verse(
+      id: 'shukr_6',
+      surah: 76,
+      verseNumber: 3,
+      textAr: 'إِنَّا هَدَيْنَاهُ السَّبِيلَ إِمَّا شَاكِرًا وَإِمَّا كَفُورًا',
+      textFr: 'Nous l\'avons guidé dans le sentier, soit reconnaissant, soit ingrat.',
+      reference: 'Al-Insan, 76:3',
+      theme: 'gratitude',
+      reflection: 'Tu as le choix : être reconnaissant ou ingrat. Choisis la gratitude.',
+      action: 'Fais une dua de remerciement pour la guidance.',
     ),
 
-    // ===== PROTECTION (Hifz) =====
+    // ========== PROTECTION (Hifz) – 6 versets ==========
     Verse(
       id: 'hifz_1',
       surah: 23,
       verseNumber: 97,
       textAr: 'وَقُل رَّبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ الشَّيَاطِينِ',
-      textFr:
-          'Et dis : Seigneur, je cherche Ta protection contre les suggestions des démons.',
+      textFr: 'Et dis : Seigneur, je cherche Ta protection contre les suggestions des démons.',
       reference: 'Al-Mu\'minun, 23:97',
       theme: 'protection',
-      reflection:
-          'Demande à Allah de te protéger. Il est le meilleur protecteur.',
-      action:
-          'Dis : A\'udhu billahi min ash-shaytani r-rajim.',
+      reflection: 'Demande à Allah de te protéger. Il est le meilleur protecteur.',
+      action: 'Dis : A\'udhu billahi min ash-shaytani r-rajim.',
     ),
     Verse(
       id: 'hifz_2',
       surah: 7,
       verseNumber: 200,
       textAr: 'وَإِمَّا يَنزَغَنَّكَ مِنَ الشَّيْطَانِ نَزْغٌ فَاسْتَعِذْ بِاللَّهِ ۖ إِنَّهُ سَمِيعٌ عَلِيمٌ',
-      textFr:
-          'Et si une suggestion du diable te tourmente, cherche refuge auprès d\'Allah. Il est certes Audient et Omniscient.',
+      textFr: 'Et si une suggestion du diable te tourmente, cherche refuge auprès d\'Allah. Il est certes Audient et Omniscient.',
       reference: 'Al-A\'raf, 7:200',
       theme: 'protection',
-      reflection:
-          'Le Shaytan te tente, mais Allah est plus proche de toi que tu ne penses.',
-      action:
-          'Fais tes ablutions (wudu) et change de position (debout → assis).',
+      reflection: 'Le Shaytan te tente, mais Allah est plus proche de toi que tu ne penses.',
+      action: 'Fais tes ablutions (wudu) et change de position (debout → assis).',
+    ),
+    Verse(
+      id: 'hifz_3',
+      surah: 113,
+      verseNumber: 1,
+      textAr: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ',
+      textFr: 'Dis : Je cherche protection auprès du Seigneur de l\'aube naissante.',
+      reference: 'Al-Falaq, 113:1',
+      theme: 'protection',
+      reflection: 'Al-Falaq protège contre les maux extérieurs.',
+      action: 'Récite Al-Falaq 3 fois.',
+    ),
+    Verse(
+      id: 'hifz_4',
+      surah: 114,
+      verseNumber: 1,
+      textAr: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ',
+      textFr: 'Dis : Je cherche protection auprès du Seigneur des hommes.',
+      reference: 'An-Nas, 114:1',
+      theme: 'protection',
+      reflection: 'An-Nas protège contre les maux intérieurs (waswas).',
+      action: 'Récite An-Nas 3 fois.',
+    ),
+    Verse(
+      id: 'hifz_5',
+      surah: 2,
+      verseNumber: 255,
+      textAr: 'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ',
+      textFr: 'Allah ! Pas de divinité à part Lui, le Vivant, Celui qui subsiste par Lui-même.',
+      reference: 'Al-Baqara, 2:255 (Ayat al-Kursi)',
+      theme: 'protection',
+      reflection: 'Ayat al-Kursi est la plus grande protection.',
+      action: 'Récite Ayat al-Kursi (une fois).',
+    ),
+    Verse(
+      id: 'hifz_6',
+      surah: 3,
+      verseNumber: 36,
+      textAr: 'وَإِنِّي أُعِيذُهَا بِكَ وَذُرِّيَّتَهَا مِنَ الشَّيْطَانِ الرَّجِيمِ',
+      textFr: 'Je la place sous Ta protection, elle et sa descendance, contre le diable banni.',
+      reference: 'Al-Imran, 3:36',
+      theme: 'protection',
+      reflection: 'La dua de la mère de Maryam est puissante pour protéger sa famille.',
+      action: 'Fais une dua de protection pour toi et ta famille.',
     ),
   ];
 
