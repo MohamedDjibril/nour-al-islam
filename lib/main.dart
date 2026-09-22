@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,10 +20,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ⚡ Initialiser Supabase EN ARRIÈRE-PLAN (ne bloque PAS le démarrage)
-  // L'app démarre immédiatement, Supabase se connecte en parallèle
   _initSupabase();
 
-  // L'app démarre IMMÉDIATEMENT (sans attendre Supabase)
   runApp(
     const ProviderScope(
       child: NourAlIslamApp(),
@@ -37,12 +37,26 @@ class NourAlIslamApp extends ConsumerWidget {
     final router = ref.watch(appRouterProvider);
     final settings = ref.watch(settingsProvider);
 
+    // Convertir la langue sauvegardée (String) en Locale
+    final Locale currentLocale = Locale(settings.language);
+
     return MaterialApp.router(
       title: 'Nour al-Islam',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: settings.themeMode,
+
+      // 🌍 Configuration de la traduction
+      locale: currentLocale,
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
       routerConfig: router,
     );
   }
