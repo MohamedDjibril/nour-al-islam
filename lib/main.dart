@@ -6,17 +6,22 @@ import 'config/theme/app_theme.dart';
 import 'config/routes/app_router.dart';
 import 'features/settings/providers/settings_provider.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Initialiser Supabase avec les clés
-  // ⚠️ La clé "publishable" est PUBLIQUE, conçue pour être dans le code client.
-  // La sécurité réelle vient des Row Level Security (RLS) côté Supabase.
+/// Initialisation Supabase en arrière-plan (non-bloquant)
+Future<void> _initSupabase() async {
   await Supabase.initialize(
     url: 'https://wmwwwdoincpobavmuxji.supabase.co',
     anonKey: 'sb_publishable_kzxbmeZ-x7CMETC8sNrrLg_A1WJMcvP',
   );
+}
 
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // ⚡ Initialiser Supabase EN ARRIÈRE-PLAN (ne bloque PAS le démarrage)
+  // L'app démarre immédiatement, Supabase se connecte en parallèle
+  _initSupabase();
+
+  // L'app démarre IMMÉDIATEMENT (sans attendre Supabase)
   runApp(
     const ProviderScope(
       child: NourAlIslamApp(),

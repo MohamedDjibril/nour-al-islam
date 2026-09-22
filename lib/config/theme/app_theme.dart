@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 /// Thème Material 3 personnalisé pour Nour al-Islam
+/// Utilise Poppins en local (au lieu de Google Fonts)
 class AppTheme {
   AppTheme._();
 
@@ -32,16 +32,18 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.cream,
+      fontFamily: 'Poppins', // ← Poppins en local !
       textTheme: _textTheme,
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.cream,
         foregroundColor: AppColors.black,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: GoogleFonts.poppins(
+        titleTextStyle: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: AppColors.black,
+          fontFamily: 'Poppins',
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -52,9 +54,10 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          textStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins',
           ),
         ),
       ),
@@ -96,16 +99,18 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: _darkBackground,
+      fontFamily: 'Poppins',
       textTheme: _textThemeDark,
       appBarTheme: AppBarTheme(
         backgroundColor: _darkBackground,
         foregroundColor: AppColors.white,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: GoogleFonts.poppins(
+        titleTextStyle: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: AppColors.white,
+          fontFamily: 'Poppins',
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -116,9 +121,10 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          textStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins',
           ),
         ),
       ),
@@ -142,40 +148,40 @@ class AppTheme {
   }
 
   // ========== TYPOGRAPHIE CLAIRE ==========
-  static final TextTheme _textTheme = TextTheme(
-    displayLarge: GoogleFonts.poppins(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.black),
-    displayMedium: GoogleFonts.poppins(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.black),
-    displaySmall: GoogleFonts.poppins(fontSize: 36, fontWeight: FontWeight.w400, color: AppColors.black),
-    headlineLarge: GoogleFonts.poppins(fontSize: 32, fontWeight: FontWeight.w600, color: AppColors.black),
-    headlineMedium: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600, color: AppColors.black),
-    headlineSmall: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w600, color: AppColors.black),
-    titleLarge: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w600, color: AppColors.black),
-    titleMedium: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.black),
-    titleSmall: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.black),
-    bodyLarge: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.black),
-    bodyMedium: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.black),
-    bodySmall: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.grey),
-    labelLarge: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.black),
-    labelMedium: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.black),
-    labelSmall: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.grey),
+  static const TextTheme _textTheme = TextTheme(
+    displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.black, fontFamily: 'Poppins'),
+    displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.black, fontFamily: 'Poppins'),
+    displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: AppColors.black, fontFamily: 'Poppins'),
+    headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: AppColors.black, fontFamily: 'Poppins'),
+    headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: AppColors.black, fontFamily: 'Poppins'),
+    headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: AppColors.black, fontFamily: 'Poppins'),
+    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: AppColors.black, fontFamily: 'Poppins'),
+    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.black, fontFamily: 'Poppins'),
+    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.black, fontFamily: 'Poppins'),
+    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.black, fontFamily: 'Poppins'),
+    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.black, fontFamily: 'Poppins'),
+    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.grey, fontFamily: 'Poppins'),
+    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.black, fontFamily: 'Poppins'),
+    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.black, fontFamily: 'Poppins'),
+    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.grey, fontFamily: 'Poppins'),
   );
 
   // ========== TYPOGRAPHIE SOMBRE ==========
-  static final TextTheme _textThemeDark = TextTheme(
-    displayLarge: GoogleFonts.poppins(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.white),
-    displayMedium: GoogleFonts.poppins(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.white),
-    displaySmall: GoogleFonts.poppins(fontSize: 36, fontWeight: FontWeight.w400, color: AppColors.white),
-    headlineLarge: GoogleFonts.poppins(fontSize: 32, fontWeight: FontWeight.w600, color: AppColors.white),
-    headlineMedium: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w600, color: AppColors.white),
-    headlineSmall: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w600, color: AppColors.white),
-    titleLarge: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w600, color: AppColors.white),
-    titleMedium: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.white),
-    titleSmall: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.white),
-    bodyLarge: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.white),
-    bodyMedium: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.white),
-    bodySmall: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: _darkTextSecondary),
-    labelLarge: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.white),
-    labelMedium: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.white),
-    labelSmall: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w500, color: _darkTextSecondary),
+  static const TextTheme _textThemeDark = TextTheme(
+    displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: 'Poppins'),
+    displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: 'Poppins'),
+    displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: 'Poppins'),
+    headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: 'Poppins'),
+    headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: 'Poppins'),
+    headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: 'Poppins'),
+    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: 'Poppins'),
+    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.white, fontFamily: 'Poppins'),
+    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.white, fontFamily: 'Poppins'),
+    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: 'Poppins'),
+    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: 'Poppins'),
+    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: _darkTextSecondary, fontFamily: 'Poppins'),
+    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.white, fontFamily: 'Poppins'),
+    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.white, fontFamily: 'Poppins'),
+    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: _darkTextSecondary, fontFamily: 'Poppins'),
   );
 }

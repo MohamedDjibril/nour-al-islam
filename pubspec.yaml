@@ -23,7 +23,6 @@ dependencies:
   supabase_flutter: ^2.17.2
 
   # UI Components
-  google_fonts: ^6.1.0
   intl: ^0.19.0
 
   # Notifications
@@ -69,4 +68,14 @@ flutter:
       fonts:
         - asset: assets/fonts/NotoSansArabic-Regular.ttf
         - asset: assets/fonts/NotoSansArabic-Bold.ttf
+          weight: 700
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
