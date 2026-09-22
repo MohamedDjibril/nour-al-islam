@@ -64,7 +64,7 @@ class SettingsScreen extends ConsumerWidget {
                         : 'Désactivés',
                     trailing: Switch(
                       value: settings.notificationsEnabled,
-                      activeThumbColor: AppColors.gold,
+                      thumbColor: WidgetStateProperty.all(AppColors.gold),
                       onChanged: (value) =>
                           notifier.setNotifications(value),
                     ),

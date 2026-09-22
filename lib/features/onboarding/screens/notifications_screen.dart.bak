@@ -24,9 +24,8 @@ class NotificationsScreen extends ConsumerWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
+          child: Column(
+            children: [
               const SizedBox(height: 24),
               Container(
                 width: 100,
@@ -83,7 +82,7 @@ class NotificationsScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 32),
+              const Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -111,7 +110,6 @@ class NotificationsScreen extends ConsumerWidget {
                 child: const Text('Plus tard'),
               ),
             ],
-          ),
           ),
         ),
       ),
