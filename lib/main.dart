@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -10,20 +10,30 @@ import 'config/routes/app_router.dart';
 import 'features/settings/providers/settings_provider.dart';
 
 // ============================================
+// CONFIGURATION SUPABASE
+// ============================================
+// Valeurs par défaut (utilisées si le .env n'est pas disponible,
+// notamment sur Flutter Web)
+const String _defaultSupabaseUrl =
+    'https://wmwwwdoincpobavmuxji.supabase.co';
+const String _defaultSupabaseAnonKey =
+    'sb_publishable_kzxbmeZ-x7CMETC8sNrLg_A1WJMcvP';
+
+// ============================================
 // INITIALISATION SUPABASE (arrière-plan, non-bloquant)
 // ============================================
 Future<void> _initSupabase() async {
-  // Charge les variables d'environnement depuis le fichier .env
-  await dotenv.load(fileName: '.env');
+  String supabaseUrl = _defaultSupabaseUrl;
+  String supabaseAnonKey = _defaultSupabaseAnonKey;
 
-  final supabaseUrl = dotenv.env['SUPABASE_URL'];
-  final supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'];
-
-  // Vérification de sécurité : s'assurer que les clés sont présentes
-  if (supabaseUrl == null || supabaseAnonKey == null) {
-    throw Exception(
-      '❌ SUPABASE_URL ou SUPABASE_ANON_KEY manquant dans le fichier .env',
-    );
+  // Essaie de charger le .env (fonctionne sur mobile/desktop)
+  try {
+    await dotenv.load(fileName: '.env');
+    supabaseUrl = dotenv.env['SUPABASE_URL'] ?? _defaultSupabaseUrl;
+    supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'] ?? _defaultSupabaseAnonKey;
+  } catch (e) {
+    // Sur Flutter Web, le .env n'est pas accessible → on utilise les valeurs par défaut
+    debugPrint('⚠️ .env non chargé, utilisation des valeurs par défaut : $e');
   }
 
   await Supabase.initialize(
@@ -38,7 +48,7 @@ Future<void> _initSupabase() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ⚡ Initialiser Supabase EN ARRIÈRE-PLAN (ne bloque PAS le démarrage)
+  // ⚡ Initialiser Supabase en arrière-plan (ne bloque PAS le démarrage)
   _initSupabase();
 
   runApp(
@@ -56,33 +66,24 @@ class NourAlIslamApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(appRouterProvider);
     final settings = ref.watch(settingsProvider);
 
     return MaterialApp.router(
       title: 'Nour al-Islam',
       debugShowCheckedModeBanner: false,
-
-      // Thème
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: settings.themeMode,
-
-      // Localisation
-      locale: settings.locale,
-      supportedLocales: const [
-        Locale('fr'),
-        Locale('en'),
-        Locale('ar'),
-      ],
+      locale: Locale(settings.language),
+      supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-
-      // Router
-      routerConfig: AppRouter.router,
+      routerConfig: router,
     );
   }
 }
