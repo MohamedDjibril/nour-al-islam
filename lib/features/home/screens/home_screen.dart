@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,6 +8,7 @@ import '../../../config/routes/app_router.dart';
 import '../../tracker/providers/tracker_provider.dart';
 import '../widgets/sos_button.dart';
 import '../widgets/streak_card.dart';
+import '../widgets/daily_verse_card.dart';
 import '../widgets/action_card.dart';
 import '../widgets/habit_tile.dart';
 import '../widgets/bottom_nav.dart';
@@ -69,12 +70,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // ==========================================
+                // CARTE STREAK (série de jours)
+                // ==========================================
                 StreakCard(
                   streakDays: tracker.streakDays,
                   completedToday: tracker.completedToday,
                   totalHabits: tracker.habits.length,
                 ),
+                const SizedBox(height: 24),
+
+                // ==========================================
+                // VERSET DU JOUR (NOUVEAU)
+                // ==========================================
+                DailyVerseCard(
+                  onMeditate: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Méditation bientôt disponible'),
+                      ),
+                    );
+                  },
+                ),
                 const SizedBox(height: 32),
+
+                // ==========================================
+                // BOUTON SOS
+                // ==========================================
                 Center(
                   child: SosButton(
                     onPressed: () {
@@ -83,6 +105,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
+
+                // ==========================================
+                // ACTIONS RAPIDES
+                // ==========================================
                 Text(
                   'Actions rapides',
                   style: Theme.of(context).textTheme.titleLarge,
@@ -121,6 +147,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 40),
+
+                // ==========================================
+                // HABITUDES DU JOUR
+                // ==========================================
                 Text(
                   'Habitudes du jour',
                   style: Theme.of(context).textTheme.titleLarge,
